@@ -51,17 +51,17 @@ short Book::getId() const
 {
 	return id;
 }
-char Book::getCategory() const
+char * Book::getCategory() const
 {
-	return category[];
+	return category;
 }
-char Book::getName() const
+char * Book::getName() const
 {
-	return Name[];
+	return Name;
 }
-char Book::getAuthor() const
+char * Book::getAuthor() const
 {
-	return Author[];
+	return Author;
 }
 short Book::getQty() const
 {
