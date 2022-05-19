@@ -113,7 +113,7 @@ int Book::Unpack(VariableLengthRecord &record)
 	result = result && record.Unpack(1, Name, true);
 	return result;
 }
-
+////////////////////////////////////////////////////////////////////mrym
 void Book::Print(ostream &stream)
 {
 	stream << "Book:"
