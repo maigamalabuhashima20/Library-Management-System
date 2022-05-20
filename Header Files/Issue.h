@@ -30,7 +30,7 @@ public:
 
 	
 	Issue();
-	Issue(short shId, char name[]);
+	Issue(short id, char cat[], char n[], short q, float p);
 
 	void InitRecord(VariableLengthRecord&); //set Record  Configuration
 
