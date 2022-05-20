@@ -30,11 +30,11 @@ void Book::setCategory(char *category)
 {
 	this->category = category;
 }
-void Book::setName(char * name)
+void Book::setName(char *name)
 {
 	Name = name;
 }
-void Book::setAuthor(char * author)
+void Book::setAuthor(char *author)
 {
 	this->Author[] = author;
 }
@@ -84,6 +84,7 @@ void Book::InitRecord(VariableLengthRecord &record)
 	record.AddField(5, 'F', 4);	  // price
 }
 
+// this pack is for the person class
 int Book::Pack(VariableLengthRecord &record)
 {
 	// pack the fields into a VariableLengthRecord, return  ( 1 )TRUE if all succeed, FALSE o/w
@@ -96,25 +97,27 @@ int Book::Pack(VariableLengthRecord &record)
 
 	// result = record.Pack(0, (void *)&id, sizeof(short));
 
+	// but this pack is for the variable length record
 	result = record.Pack(0, (void *)&id, sizeof(short)) &&
-	 record.Pack(1, (void *)category, strlen(category)) &&
-	  record.Pack(2, (void *)Name, strlen(Name)) &&
-	   record.Pack(3, (void *)Author, strlen(Author)) &&
-	    record.Pack(4, (void *)&Qty, sizeof(short)) &&
-		 record.Pack(5, (void *)&price, sizeof(float));
+			 record.Pack(1, (void *)category, strlen(category)) &&
+			 record.Pack(2, (void *)Name, strlen(Name)) &&
+			 record.Pack(3, (void *)Author, strlen(Author)) &&
+			 record.Pack(4, (void *)&Qty, sizeof(short)) &&
+			 record.Pack(5, (void *)&price, sizeof(float));
 
 	return result;
 }
 
 int Book::Unpack(VariableLengthRecord &record)
 {
+
+	// use true with array of char to tell us that text is done
 	int result;
-	result = record.Unpack(0, (char *)&id) 
-	&& record.Unpack(1, category, true) &&
-	 record.Unpack(2, Name, true) &&
-	  record.Unpack(3, Author, true) &&
-	   record.Unpack(4, (char *)&Qty, true) &&
-	    record.Unpack(5, (char *)&price, true);
+	result = record.Unpack(0, (char *)&id) && record.Unpack(1, category, true) &&
+			 record.Unpack(2, Name, true) &&
+			 record.Unpack(3, Author, true) &&
+			 record.Unpack(4, (char *)&Qty) &&
+			 record.Unpack(5, (char *)&price);
 	return result;
 }
 ////////////////////////////////////////////////////////////////////mrymhuobppup
@@ -122,5 +125,10 @@ void Book::Print(ostream &stream)
 {
 	stream << "Book:"
 		   << "\tId '" << id << "'\n"
-		   << "\tName '" << Name << "'\n";
+		   << "\tcategory '" << category << "'\n"
+		   << "\tName '" << Name << "'\n"
+		   << "\tAuthor '" << Author << "'\n"
+		   << "\tQty '" << Qty << "'\n"
+		   << "\tprice '" << price << "'\n";
+		   
 }

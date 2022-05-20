@@ -18,18 +18,25 @@ void VariableLengthRecord::init(int iFieldsCount)
 {
 	m_iFieldsCount = iFieldsCount;
 	m_recordFields = new Field[m_iFieldsCount];
+
+	// array of fields (type (F OR D OR L), length(if length indicator or fixed) , delimiter(if delimiter))
 }
 
+
+// this add for add delimiter
 void VariableLengthRecord::AddField(int index, char szType, char delimiter) // D
 {
 	m_recordFields[index].szFieldRepresentation = szType;
 	m_recordFields[index].delimiter = delimiter;
 }
+
+// this add for add fixed or length indicator
 void VariableLengthRecord::AddField(int index, char szType, int length)  // L , F
 {
 	m_recordFields[index].szFieldRepresentation = szType;
 	m_recordFields[index].length = length;
 }
+
 
 // Write Header
 bool VariableLengthRecord::WriteHeader(ostream& stream) const

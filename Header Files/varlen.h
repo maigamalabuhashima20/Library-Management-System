@@ -12,7 +12,7 @@ struct Field
 	char delimiter;				// Delimiter char
 };
 
-// Abstract class designed to support variablelength records
+// Abstract class designed to support variable length records
 // Fields may be of a variety of types
 class VariableLengthRecord
 {
