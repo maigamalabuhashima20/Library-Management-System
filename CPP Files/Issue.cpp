@@ -1,13 +1,17 @@
 #include <string.h>
-#include "../Header Files/Issue.h"
+#include "issue.h"
+
 
 Issue::Issue()
 {
 	id = 0;
-	Name[0] = 0;
+	student_name[0] = 0;
+	Qty = 0;
+	date[0]=0;
+	category[0]=0;
 }
 
-Issue::Issue(short id, char cat[], char n[],short q, float p)
+Issue::Issue(short id, char book_name[], char student_name[], char Return_date[], char Issue_date[])
 {
 	id = 0;
 	category[0] = 0;
@@ -15,5 +19,4 @@ Issue::Issue(short id, char cat[], char n[],short q, float p)
 	Qty = 0;
 	date[0] = 0;
 }
-
 
