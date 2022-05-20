@@ -9,28 +9,31 @@ class Issue
 {
 public:
 	// fields
-	short	id;
-	char	student_name[11];
-	short   Qty;
-	char    date[11];
-	char category[20];
+	short	student_id;
+	char	*book_name;
+	char	*student_name;
+	char    *Return_date;
+	char    *Issue_date;
 
-
+	
 
 	void setId(short id);
-	void setCategory(char category[]);
+	void setbook_name(char name[]);
 	void setstudent_name(char name[]);
-	void setQty(float qty);
+	void setReturn_date(char category[]);
+	void setIssue_date(char category[]);
+
 
 	// Getters
 	short getId() const;
-	char getCategory() const;
+	char getbook_name() const;
 	char getstudent_name() const;
-	short getQty() const;
+	char getReturn_date() const;
+	char getIssue_date() const;
 
 	
 	Issue();
-	Issue(short id, char cat[], char n[], short q, float p);
+	Issue(short id, char book_name[], char student_name[], char Return_date[], char Issue_date[]);
 
 	void InitRecord(VariableLengthRecord&); //set Record  Configuration
 
@@ -39,8 +42,5 @@ public:
 	int Unpack(VariableLengthRecord&);  // From Record to  Object Person  => Read
 
 	void Print(ostream&);
-
-	//Add..mryam
-	//serch..mryam
 
 };

@@ -4,19 +4,21 @@
 
 Issue::Issue()
 {
-	id = 0;
+	student_id = 0;
+	book_name[0] = 0;
 	student_name[0] = 0;
-	Qty = 0;
-	date[0]=0;
-	category[0]=0;
+	Return_date[0]=0;
+	Issue_date[0]=0;
 }
 
-Issue::Issue(short id, char book_name[], char student_name[], char Return_date[], char Issue_date[])
+Issue::Issue(short id, char* bname, char* sname, char* Rdate, char* Idate)
 {
-	id = 0;
-	category[0] = 0;
-	student_name[0] = 0;
-	Qty = 0;
-	date[0] = 0;
+	student_id = id;
+	book_name = bname;
+	student_name = sname;
+	Return_date = Rdate;
+	Issue_date = Idate;
 }
+
+
 
