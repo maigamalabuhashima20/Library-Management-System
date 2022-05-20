@@ -12,7 +12,7 @@ Book::Book()
 	price = 0;
 }
 
-Book::Book(short shId, char * c, char *n, char *a, short q, float p)
+Book::Book(short shId, char *c, char *n, char *a, short q, float p)
 {
 	id = shId;
 	category, c;
@@ -124,11 +124,10 @@ int Book::Unpack(VariableLengthRecord &record)
 void Book::Print(ostream &stream)
 {
 	stream << "Book:"
-		   << "\tId '" << id << "'\n"
-		   << "\tcategory '" << category << "'\n"
-		   << "\tName '" << Name << "'\n"
-		   << "\tAuthor '" << Author << "'\n"
-		   << "\tQty '" << Qty << "'\n"
-		   << "\tprice '" << price << "'\n";
-		   
+		   << "\tId '" << getId() << "'\n"
+		   << "\tcategory '" << getCategory() << "'\n"
+		   << "\tName '" << getName() << "'\n"
+		   << "\tAuthor '" << getAuthor() << "'\n"
+		   << "\tQty '" << getQty() << "'\n"
+		   << "\tprice '" << getPrice() << "'\n";
 }
