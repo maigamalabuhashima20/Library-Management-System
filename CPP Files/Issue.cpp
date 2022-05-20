@@ -1,10 +1,8 @@
-#include <iostream>
-#include <algorithm>
-using namespace std;
-int main()
+#include <string.h>
+#include "../Header Files/Issue.h"
+
+Issue::Issue()
 {
-  
-  
-  
-	return 0;
+	id = 0;
+	Name[0] = 0;
 }
