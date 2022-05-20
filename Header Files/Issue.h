@@ -40,4 +40,7 @@ public:
 
 	void Print(ostream&);
 
+	//Add..mryam
+	//serch..mryam
+
 };
