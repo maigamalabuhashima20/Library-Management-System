@@ -27,9 +27,9 @@ public:
 
 	// Getters
 	short getId() const;
-	char getCategory() const;
-	char getName() const;
-	char getAuthor() const;
+	const char * getCategory() const;
+	const char * getName() const;
+	const char * getAuthor() const;
 	short getQty() const;
 	float getPrice() const;
 

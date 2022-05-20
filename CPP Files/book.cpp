@@ -28,15 +28,15 @@ void Book::setId(short id)
 }
 void Book::setCategory(char *category)
 {
-		this->category = category;
+	this->category = category;
 }
-void Book::setName(char name[])
+void Book::setName(char * name)
 {
-	this->name[] = name[];
+	Name = name;
 }
-void Book::setAuthor(char author[])
+void Book::setAuthor(char * author)
 {
-	this->author[] = author;
+	this->Author[] = author;
 }
 void Book::setQty(float qty)
 {
@@ -51,15 +51,15 @@ short Book::getId() const
 {
 	return id;
 }
-char *Book::getCategory() const
+const char *Book::getCategory() const
 {
 	return category;
 }
-char *Book::getName() const
+const char *Book::getName() const
 {
 	return Name;
 }
-char *Book::getAuthor() const
+const char *Book::getAuthor() const
 {
 	return Author;
 }
@@ -96,7 +96,12 @@ int Book::Pack(VariableLengthRecord &record)
 
 	// result = record.Pack(0, (void *)&id, sizeof(short));
 
-	result = record.Pack(0, (void *)&id, sizeof(short)) && record.Pack(1, (void *)category, strlen(category)) && record.Pack(1, (void *)Name, strlen(Name)) && record.Pack(1, (void *)Author, strlen(Author)) && record.Pack(1, (void *)&Qty, sizeof(short)) && record.Pack(1, (void *)&price, sizeof(float));
+	result = record.Pack(0, (void *)&id, sizeof(short)) &&
+	 record.Pack(1, (void *)category, strlen(category)) &&
+	  record.Pack(2, (void *)Name, strlen(Name)) &&
+	   record.Pack(3, (void *)Author, strlen(Author)) &&
+	    record.Pack(4, (void *)&Qty, sizeof(short)) &&
+		 record.Pack(5, (void *)&price, sizeof(float));
 
 	return result;
 }
@@ -105,11 +110,11 @@ int Book::Unpack(VariableLengthRecord &record)
 {
 	int result;
 	result = record.Unpack(0, (char *)&id) 
-	&& record.Unpack(1, Name, true) &&
-	 record.Unpack(1, Name, true) &&
-	  record.Unpack(1, Name, true) &&
-	   record.Unpack(1, Name, true) &&
-	    record.Unpack(1, Name, true);
+	&& record.Unpack(1, category, true) &&
+	 record.Unpack(2, Name, true) &&
+	  record.Unpack(3, Author, true) &&
+	   record.Unpack(4, (char *)&Qty, true) &&
+	    record.Unpack(5, (char *)&price, true);
 	return result;
 }
 ////////////////////////////////////////////////////////////////////mrymhuobppup
