@@ -35,7 +35,7 @@ public:
 	
 	//operations
 	Book();
-	Book(short shId, char name[]);
+	Book(short shId, char name[]);    ///this is error here ??
 
 	void InitRecord(VariableLengthRecord &); //set Record  Configuration
 
