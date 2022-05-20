@@ -26,9 +26,9 @@ void Book::setId(short id)
 {
 	this->id = id;
 }
-void Book::setCategory(char category[])
+void Book::setCategory(char *category)
 {
-	this->category[] = category[];
+		this->category = category;
 }
 void Book::setName(char name[])
 {
@@ -51,15 +51,15 @@ short Book::getId() const
 {
 	return id;
 }
-char * Book::getCategory() const
+char *Book::getCategory() const
 {
 	return category;
 }
-char * Book::getName() const
+char *Book::getName() const
 {
 	return Name;
 }
-char * Book::getAuthor() const
+char *Book::getAuthor() const
 {
 	return Author;
 }
@@ -77,11 +77,11 @@ void Book::InitRecord(VariableLengthRecord &record)
 {
 	record.init(6);				  //#fields
 	record.AddField(0, 'F', 2);	  // id
-	record.AddField(1, 'D', '|'); //category
+	record.AddField(1, 'D', '|'); // category
 	record.AddField(2, 'D', '#'); // name
 	record.AddField(3, 'D', '%'); // author
 	record.AddField(4, 'F', 2);	  // qty
-	record.AddField(5, 'F', 4);	  //price
+	record.AddField(5, 'F', 4);	  // price
 }
 
 int Book::Pack(VariableLengthRecord &record)
@@ -94,14 +94,9 @@ int Book::Pack(VariableLengthRecord &record)
 
 	record.Clear(recordSize);
 
-	//result = record.Pack(0, (void *)&id, sizeof(short));
+	// result = record.Pack(0, (void *)&id, sizeof(short));
 
-	result = record.Pack(0, (void *)&id, sizeof(short))
-	 		&& record.Pack(1, (void *)category, strlen(category)) 
-		 	&& record.Pack(1, (void *)Name, strlen(Name)) 
-			&& record.Pack(1, (void *)Author, strlen(Author))
-			&& record.Pack(1, (void *)&Qty, sizeof(short))
-			&& record.Pack(1, (void *)&price, sizeof(float));
+	result = record.Pack(0, (void *)&id, sizeof(short)) && record.Pack(1, (void *)category, strlen(category)) && record.Pack(1, (void *)Name, strlen(Name)) && record.Pack(1, (void *)Author, strlen(Author)) && record.Pack(1, (void *)&Qty, sizeof(short)) && record.Pack(1, (void *)&price, sizeof(float));
 
 	return result;
 }
@@ -109,11 +104,15 @@ int Book::Pack(VariableLengthRecord &record)
 int Book::Unpack(VariableLengthRecord &record)
 {
 	int result;
-	result = record.Unpack(0, (char *)&id);
-	result = result && record.Unpack(1, Name, true);
+	result = record.Unpack(0, (char *)&id) 
+	&& record.Unpack(1, Name, true) &&
+	 record.Unpack(1, Name, true) &&
+	  record.Unpack(1, Name, true) &&
+	   record.Unpack(1, Name, true) &&
+	    record.Unpack(1, Name, true);
 	return result;
 }
-////////////////////////////////////////////////////////////////////mrym
+////////////////////////////////////////////////////////////////////mrymhuobppup
 void Book::Print(ostream &stream)
 {
 	stream << "Book:"
