@@ -55,6 +55,12 @@ public:
 
 	bool Unpack(int, char*, bool bIsText = false);
 
-	bool Read(istream&);
-	bool Write(ostream&) const;
+	bool ReadL(istream&);
+	bool WriteL(ostream&) const;
+
+	bool ReadF(istream&);
+	bool WriteF(ostream&) const;
+
+	bool ReadD(istream&);
+	bool WriteD(ostream&) const;
 };

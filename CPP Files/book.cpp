@@ -12,12 +12,12 @@ Book::Book()
 	price = 0;
 }
 
-Book::Book(short shId, char c[], char n[], char a[], short q, float p)
+Book::Book(short shId, char * c, char *n, char *a, short q, float p)
 {
 	id = shId;
-	strcpy_s(category, c);
-	strcpy_s(Name, n);
-	strcpy_s(Author, a);
+	category, c;
+	Name, n;
+	Author, a;
 	Qty = q;
 	price = p;
 }
@@ -36,7 +36,7 @@ void Book::setName(char *name)
 }
 void Book::setAuthor(char *author)
 {
-	this->Author[] = author;
+	this->Author = author;
 }
 void Book::setQty(float qty)
 {

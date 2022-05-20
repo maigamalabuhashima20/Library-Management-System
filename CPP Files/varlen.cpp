@@ -196,18 +196,23 @@ bool VariableLengthRecord::UnpackLength(char* lpData, char lengthIndicatorSize, 
 	m_iNextByte += length + lengthIndicatorSize;
 	return true;
 }
+
 bool VariableLengthRecord::Unpack(int index, char* lpData, bool bIsText /*= false*/)
 {
 	if (m_recordFields[index].szFieldRepresentation == 'F')
 		return UnpackFixLen(lpData, m_recordFields[index].length);
 
+
+	// bIsText for \0 to tell me that record finished
 	if (m_recordFields[index].szFieldRepresentation == 'D')
 		return UnpackDelimeted(lpData, m_recordFields[index].delimiter, bIsText);
 
 	return UnpackLength(lpData, m_recordFields[index].length, bIsText);
 }
 
-bool VariableLengthRecord::Read(istream& stream)
+
+//this read and write is for length indicator record
+bool VariableLengthRecord::ReadL(istream& stream)
 {
 	Clear();
 	stream.read((char*)&m_iRecordSize, sizeof(m_iRecordSize));
@@ -219,7 +224,7 @@ bool VariableLengthRecord::Read(istream& stream)
 	return !stream.fail();
 }
 
-bool VariableLengthRecord::Write(ostream& stream) const
+bool VariableLengthRecord::WriteL(ostream& stream) const
 // write the length and buffer into the stream
 {
 	stream.write((char*)&m_iRecordSize, sizeof(m_iRecordSize));
@@ -228,4 +233,42 @@ bool VariableLengthRecord::Write(ostream& stream) const
 
 	stream.write(pRecord, m_iRecordSize);
 	return !stream.fail();
+}
+
+//this read and write is for fixed length record
+bool VariableLengthRecord::ReadF(istream& stream)
+{
+	Clear();
+	pRecord = new char[m_iRecordSize];
+	stream.read(pRecord, 200);
+	return !stream.fail();
+}
+
+bool VariableLengthRecord::WriteF(ostream& stream) const
+// write the length and buffer into the stream
+{
+	stream.write(pRecord, 200);
+	return !stream.fail();
+}
+
+
+//this read and write is for delimiter record
+bool VariableLengthRecord::ReadD(istream& stream)
+{
+	char delimiter = '$';
+	Clear();
+	pRecord = new char[m_iRecordSize];
+	stream.read(pRecord, delimiter);
+	return !stream.fail();
+}
+
+bool VariableLengthRecord::WriteD(ostream& stream) const
+// write the length and buffer into the stream
+{
+	char delimiter = '$';
+	stream.write(pRecord, m_iRecordSize);
+	return !stream.fail();
+	stream.put(delimiter);
+	if (stream.fail())
+		return false;
 }
