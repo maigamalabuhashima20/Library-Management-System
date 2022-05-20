@@ -15,9 +15,9 @@ Book::Book()
 Book::Book(short shId, char *c, char *n, char *a, short q, float p)
 {
 	id = shId;
-	category, c;
-	Name, n;
-	Author, a;
+	category = c;
+	Name = n;
+	Author = a;
 	Qty = q;
 	price = p;
 }
@@ -26,17 +26,17 @@ void Book::setId(short id)
 {
 	this->id = id;
 }
-void Book::setCategory(char *category)
+void Book::setCategory(const char *category)
 {
-	this->category = category;
+	this->category == category;
 }
-void Book::setName(char *name)
+void Book::setName(const char *name)
 {
-	Name = name;
+	this->Name == name;
 }
-void Book::setAuthor(char *author)
+void Book::setAuthor(const char *author)
 {
-	this->Author = author;
+	this->Author == author;
 }
 void Book::setQty(float qty)
 {

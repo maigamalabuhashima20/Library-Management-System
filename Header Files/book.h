@@ -19,9 +19,9 @@ private:
 public:
 	// Setters
 	void setId(short id);
-	void setCategory(char *category);
-	void setName(char *name);
-	void setAuthor(char *author);
+	void setCategory(const char *category);
+	void setName(const char *name);
+	void setAuthor(const char *author);
 	void setQty(float qty);
 	void setPrice(float price);
 
