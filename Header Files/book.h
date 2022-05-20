@@ -10,9 +10,9 @@ class Book
 private:
 	// fields
 	short id;
-	char *category;
-	char *Name;
-	char *Author;
+	char category[20];
+	char Name[20];
+	char Author[20];
 	short Qty;
 	float price;
 
