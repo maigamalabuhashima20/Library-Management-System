@@ -15,8 +15,9 @@ private:
 	char Author[11];
 	short Qty;
 	float price;
+
 public:
-    // Setters
+	// Setters
 	void setId(short id);
 	void setCategory(char category[]);
 	void setName(char name[]);
@@ -32,12 +33,11 @@ public:
 	short getQty() const;
 	float getPrice() const;
 
-	
-	//operations
+	// operations
 	Book();
-	Book(short shId, char name[]);    ///this is error here ??
+	Book(short shId, char c[], char n[], char a[], short q, float p); /// this is error here ??  now it's no error
 
-	void InitRecord(VariableLengthRecord &); //set Record  Configuration
+	void InitRecord(VariableLengthRecord &); // set Record  Configuration
 
 	int Pack(VariableLengthRecord &); //  From ObjectPerson  to  Record =>  Write
 
