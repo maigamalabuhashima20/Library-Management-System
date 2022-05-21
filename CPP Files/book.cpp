@@ -138,13 +138,13 @@ void Book::Add_Book() {
 	cout << "Enter the Book id\n";
 	Book.setId();
 	cout << "Enter the Book Author\n";
-	Book.getAuthor();
+	Book.setAuthor();
 	cout << "Enter the Book price\n";
-	Book.getPrice();
+	Book.setPrice();
 	cout << "Enter the Book Qty\n";
-	Book.getQty();
+	Book.setQty();
 	cout << "Enter the Book Category()\n";
-	Book.getCategory();
+	Book.setCategory();
 }
 void Book::Updata_Books() {
 	if (Qty<= 5)
