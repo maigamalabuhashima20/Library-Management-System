@@ -147,11 +147,18 @@ void Book::Add_Book() {
 	Book.setCategory();
 }
 void Book::Updata_Books() {
-	if (Qty<= 5)
+	if (Book::setQty()<= 5)
 	{
+		cout << "Updata Books\n";
 		Book::Add_Book()
-	}
-	else
-		cout << "Sorry you can't updata\n";
+			int count = 0;
+		while (Book::Add_Book())
+		{
+			count++;
+			Qty += count;
+		}
 
-}
+			cout << "offer for student\n";
+		Book.setPrice() *= 0.5;
+
+	}
