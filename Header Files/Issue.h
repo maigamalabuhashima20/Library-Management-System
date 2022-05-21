@@ -42,5 +42,7 @@ public:
 	int Unpack(VariableLengthRecord&);  // From Record to  Object Person  => Read
 
 	void Print(ostream&);
-
+	
+// add => mryam
+//serch => mryam
 };
