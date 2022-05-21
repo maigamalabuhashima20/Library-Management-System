@@ -1,5 +1,5 @@
 #include <string.h>
-#include "../Header Files/book.h"
+#include "book.h"
 
 Book::Book()
 {
@@ -15,9 +15,9 @@ Book::Book()
 Book::Book(short shId, char *c, char *n, char *a, short q, float p)
 {
 	id = shId;
-	strcpy(category , c);
-	strcpy(Name , n);
-	strcpy(Author, a);
+	strcpy_s(category, c);
+	strcpy_s(Name, n);
+	strcpy_s(Author, a);
 	Qty = q;
 	price = p;
 }
@@ -28,17 +28,17 @@ void Book::setId(short id)
 }
 void Book::setCategory(const char *category)
 {
-	strcpy(this->category , category);
+	strcpy_s(this->category, category);
 }
 void Book::setName(const char *name)
 {
-	strcpy(this->Name , name);
+	strcpy_s(this->Name, name);
 }
 void Book::setAuthor(const char *author)
 {
-	strcpy(this->Author, author);
+	strcpy_s(this->Author, author);
 }
-void Book::setQty(float qty)
+void Book::setQty(short qty)
 {
 	this->Qty = qty;
 }
@@ -91,7 +91,7 @@ int Book::Pack(VariableLengthRecord &record)
 	int result, recordSize = 0; // Length Indicator  id(short) = 120 , name = AMES , Delimiter = 1 = > 7
 
 	// because we are length indicator record
-	recordSize = 11 + strlen(Name) + strlen(category) + strlen(Author);
+	recordSize = 11 + sizeof(Name) + sizeof(category) + sizeof(Author);
 
 	record.Clear(recordSize);
 
@@ -99,9 +99,9 @@ int Book::Pack(VariableLengthRecord &record)
 
 	// but this pack is for the variable length record
 	result = record.Pack(0, (void *)&id, sizeof(short)) &&
-			 record.Pack(1, (void *)category, strlen(category)) &&
-			 record.Pack(2, (void *)Name, strlen(Name)) &&
-			 record.Pack(3, (void *)Author, strlen(Author)) &&
+			 record.Pack(1, (char *)category, sizeof(category)) &&
+			 record.Pack(2, (char *)Name, sizeof(Name)) &&
+			 record.Pack(3, (char *)Author, sizeof(Author)) &&
 			 record.Pack(4, (void *)&Qty, sizeof(short)) &&
 			 record.Pack(5, (void *)&price, sizeof(float));
 

@@ -22,7 +22,7 @@ public:
 	void setCategory(const char *category);
 	void setName(const char *name);
 	void setAuthor(const char *author);
-	void setQty(float qty);
+	void setQty(short qty);
 	void setPrice(float price);
 
 	// Getters
