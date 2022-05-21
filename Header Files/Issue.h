@@ -18,22 +18,22 @@ public:
 	
 
 	void setId(short id);
-	void setbook_name(char name[]);
-	void setstudent_name(char name[]);
-	void setReturn_date(char category[]);
-	void setIssue_date(char category[]);
+	void setbook_name(const char* book_name);
+	void setstudent_name(const char* student_name);
+	void setReturn_date(const char* return_date);
+	void setIssue_date(const char* issue_date);
 
 
 	// Getters
 	short getId() const;
-	char getbook_name() const;
-	char getstudent_name() const;
-	char getReturn_date() const;
-	char getIssue_date() const;
+	const  char* getbook_name() const;
+	const  char* getstudent_name() const;
+	const  char* getReturn_date() const;
+	const  char* getIssue_date() const;
 
 	
 	Issue();
-	Issue(short id, char book_name[], char student_name[], char Return_date[], char Issue_date[]);
+	Issue(short id, char* bname, char* sname, char* Rdate, char* Idate);
 
 	void InitRecord(VariableLengthRecord&); //set Record  Configuration
 
@@ -42,7 +42,6 @@ public:
 	int Unpack(VariableLengthRecord&);  // From Record to  Object Person  => Read
 
 	void Print(ostream&);
-	
-// add => mryam
-//serch => mryam
+//add => mryam
+//serch=> mryam
 };
