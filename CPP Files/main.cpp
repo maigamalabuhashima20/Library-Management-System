@@ -36,12 +36,12 @@ int main()
 
 	// add new Book 1- fill Book data (object)  2- packing  3- writing
 
-	Book.setId(30);
-	Book.setCategory("computer");
-	Book.setName("INTRO TO C++");
-	Book.setAuthor("JAMES");
-	Book.setQty(300);
-	Book.setPrice(300.0);
+	Book.setId(300);
+	Book.setCategory("physics");
+	Book.setName("INTRO TO physics");
+	Book.setAuthor("ahmed");
+	Book.setQty(200);
+	Book.setPrice(100.0);
 
 	Book.Pack(outRecord); // Precord  => array  of  char   120Ames| , 130Ahmed|
 
