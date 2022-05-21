@@ -11,7 +11,8 @@ int main()
 
 	VariableLengthRecord outRecord, inRecord;
 
-	// fill object
+	// fill object or function add
+
 	Book.setId(30);
 	Book.setCategory("computer");
 	Book.setName("INTRO TO C++");
