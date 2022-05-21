@@ -180,6 +180,32 @@ void Book::Add_Book()
 	}
 	TestOut.close();
 }
+void UpdateData(fstream& io) {
+	io.seekg(0, ios::beg); // Reset Cursor
+
+	
+	// optional. 
+	io.seekg( sizeof(Record), ios::cur);
+	void Book::UnPack(VariableLengthRecord & record) {
+
+		cout << "Book category  : " << Record.setcategory << endl;
+		cout << "Book Price : " << Record.setprice ()<< endl;
+		cout << "Book QTY : " << Record.setqty() << endl;
+	}
+	io.seekp( sizeof(Record), ios::cur);
+
+	cout << "Enter the update data" << endl;
+	void Book::pack(VariableLengthRecord& record) {
+		cout << "Enter the Book category:";  cin.getline(Record.setcategory(),20);
+		cout << "Enter the Book price:";  cin >> Record.setprice();
+		cout << "Enter  the Book Qty:";   cin >> Record.setqty();
+
+	}
+
+	
+
+}
+
 
 void Book::display_book()
 {
