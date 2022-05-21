@@ -46,6 +46,5 @@ public:
 	void Print(ostream &);
 	void Add_Book();
 	void Updata_Books();
-
-	void seach_Book();
+	void display_book(fstream &file);
 };

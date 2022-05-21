@@ -14,11 +14,65 @@ Issue::Issue()
 Issue::Issue(short id, char* bname, char* sname, char* Rdate, char* Idate)
 {
 	student_id = id;
-	book_name = bname;
-	student_name = sname;
-	Return_date = Rdate;
-	Issue_date = Idate;
+	strcpy(book_name, bname);
+	strcpy(book_name, sname);
+	strcpy(book_name, Rdate);
+	strcpy(book_name, Idate);
 }
+
+//set
+void Issue::setId(short student_id)
+{
+	this->student_id = student_id;
+}
+
+void Issue::setbook_name(const char* book_name)
+{
+	strcpy(this->book_name, book_name);
+}
+
+void Issue::setstudent_name(const char* student_name)
+{
+	strcpy(this->student_name, student_name);
+}
+
+void Issue::setReturn_date(const char* Return_date)
+{
+	strcpy(this->Return_date, Return_date);
+}
+
+void Issue::setIssue_date(const char* Issue_date)
+{
+	strcpy(this->Issue_date, Issue_date);
+}
+
+
+//get
+short Issue::getId() const
+{
+	return student_id;
+}
+
+const char* Issue::getbook_name() const
+{
+	return book_name;
+}
+
+const char* Issue::getstudent_name() const
+{
+	return student_name;
+}
+
+const char* Issue::getReturn_date() const
+{
+	return Return_date;
+}
+
+const char* Issue::getIssue_date() const
+{
+	return Issue_date;
+}
+
 
 // initialize a VariableLengthRecord to be used for Persons
 void Issue::InitRecord(VariableLengthRecord& record)
@@ -57,7 +111,7 @@ int Issue::Unpack(VariableLengthRecord& record)
 	
 	result = record.Unpack(0, (char*)&student_id)
 		&& record.Unpack(1, book_name, true)
-		&& record.Unpack(2, student_name, true)    // الترو عشان تعرفني انه نهاية السترينج
+		&& record.Unpack(2, student_name, true) // الترو عشان تعرفني انه نهاية السترينج
 		&& record.Unpack(3, (char*)&Return_date)
 		&& record.Unpack(4, (char*)&Issue_date);
 	return result;
@@ -73,6 +127,9 @@ void Issue::Print(ostream& stream)
 		<< "\tIssue's date '" << Issue_date << "'\n";
 }
 
-// add => mryam
-//serch => mryam
+
+
+//add =>mryam
+
+//serch=>mryam
 
