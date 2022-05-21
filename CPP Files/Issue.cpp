@@ -137,7 +137,8 @@ void Issue::Print(ostream& stream)
 void Issues ::display_Issues ()
 {
  VariableLengthRecord inRecord;      //object from chass varable hength
- ifstream TestIn("deltext.dat", ios::in | ios::binary);
+Issues.I1;
+ ifstream TestIn("isstext.dat", ios::in | ios::binary);
  inRecord.ReadHeader(TestIn);
  TestIn.seekg(0, ios::beg);        // Reset Cursor
  if (TestIn.is_open())
