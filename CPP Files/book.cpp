@@ -131,26 +131,38 @@ void Book::Print(ostream &stream)
 		   << "\tQty '" << getQty() << "'\n"
 		   << "\tprice '" << getPrice() << "'\n";
 }
-void Book::Add_Book() {
-        short id;
-	char category[20];
-	char Name[20];
-	char Author[20];
+void Book::Add_Book()
+{
+	short id;
+	char category[20], Name[20], Author[20];
 	short Qty;
 	float price;
 
-	cout << "Enter the Book Name\n";
-	Book.setName(Name[20]);
+	cin.ignore();
 	cout << "Enter the Book id\n";
-	Book.setId(id);
-	cout << "Enter the Book Author\n";
-	Book.setAuthor(Author[20]);
-	cout << "Enter the Book price\n";
-	Book.setPrice(price);
-	cout << "Enter the Book Qty\n";
-	Book.setQty(Qty);
+	cin >> id;
+	setId(id);
+
 	cout << "Enter the Book Category()\n";
-	Book.setCategory(category[20]);
+	cin.getline(category, 20);
+	setCategory(category);
+
+	cout << "Enter the Book Name\n";
+	cin.getline(category, 20);
+	setName(Name);
+
+	cout << "Enter the Book Author\n";
+	cin.getline(category, 20);
+	setAuthor(Author);
+
+	cout << "Enter the Book price\n";
+	cin >> price;
+	setPrice(price);
+	cout << "Enter the Book Qty\n";
+	cin >> Qty;
+	setQty(Qty);
 }
 
-void Book::seach_Book();
+void Book::seach_Book()
+{
+}
