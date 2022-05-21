@@ -155,3 +155,5 @@ void Book::Updata_Books() {
 		cout << "Sorry you can't updata\n";
 
 }
+
+void Book::seach_Book();
