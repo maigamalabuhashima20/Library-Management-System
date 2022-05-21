@@ -73,5 +73,6 @@ void Issue::Print(ostream& stream)
 		<< "\tIssue's date '" << Issue_date << "'\n";
 }
 
-
+// add => mryam
+//serch => mryam
 
