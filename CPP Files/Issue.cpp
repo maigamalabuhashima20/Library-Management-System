@@ -133,3 +133,29 @@ void Issue::Print(ostream& stream)
 
 //serch=>mryam
 
+
+void Issues ::display_Issues ()
+{
+ VariableLengthRecord inRecord;      //object from chass varable hength
+ ifstream TestIn("deltext.dat", ios::in | ios::binary);
+ inRecord.ReadHeader(TestIn);
+ TestIn.seekg(0, ios::beg);        // Reset Cursor
+ if (TestIn.is_open())
+ {
+  while (!TestIn.eof())
+  {
+   cout << "read " << inRecord.ReadL(TestIn) << endl;
+   cout << "unpack " << Unpack(inRecord) << endl;
+   Print();
+
+    cout << "student_ id : " << I1.Id() << endl;
+  cout << " student_name: " << I1.sname()  << endl;
+  cout << "book_ Name : " << I1. bName()<< endl;
+  cout << " Return_date: " <<I1.Rdate ()<< endl;
+  cout << " Issue_date: " <<I1.Idate ()<< endl;
+ 
+  }
+ }
+ TestIn.close();
+ // TestIn.clear();  //to able to read aga
+}
