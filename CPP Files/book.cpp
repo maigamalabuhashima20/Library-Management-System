@@ -134,17 +134,17 @@ void Book::Print(ostream &stream)
 void Book::Add_Book() {
 
 	cout << "Enter the Book Name\n";
-	Book::setName();
+	Book.setName();
 	cout << "Enter the Book id\n";
-	Book::setId();
+	Book.setId();
 	cout << "Enter the Book Author\n";
-	Book::getAuthor();
+	Book.getAuthor();
 	cout << "Enter the Book price\n";
-	Book::getPrice();
+	Book.getPrice();
 	cout << "Enter the Book Qty\n";
-	Book::getQty();
+	Book.getQty();
 	cout << "Enter the Book Category()\n";
-	Book::getCategory();
+	Book.getCategory();
 }
 void Book::Updata_Books() {
 	if (Qty<= 5)
