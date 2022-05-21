@@ -1,4 +1,5 @@
 #include <string.h>
+#include <fstream>
 #include "book.h"
 
 Book::Book()
@@ -133,36 +134,68 @@ void Book::Print(ostream &stream)
 }
 void Book::Add_Book()
 {
-	short id;
+	VariableLengthRecord outRecord;
+	short id, choice = 1;
 	char category[20], Name[20], Author[20];
 	short Qty;
 	float price;
 
-	cin.ignore();
-	cout << "Enter the Book id\n";
-	cin >> id;
-	setId(id);
+	InitRecord(outRecord); // only once
+	ofstream TestOut("deltext.dat", ios::out | ios::binary | ios::app);
 
-	cout << "Enter the Book Category()\n";
-	cin.getline(category, 20);
-	setCategory(category);
+	outRecord.WriteHeader(TestOut); // once
+	if (TestOut.is_open())
+	{
+		while (choice)
+		{
+			cout << "Enter the Book id\n";
+			cin >> id;
+			setId(id);
 
-	cout << "Enter the Book Name\n";
-	cin.getline(category, 20);
-	setName(Name);
+			cout << "Enter the Book Category\n";
+			cin >> category;
+			setCategory(category);
 
-	cout << "Enter the Book Author\n";
-	cin.getline(category, 20);
-	setAuthor(Author);
+			cout << "Enter the Book Name\n";
+			cin >> Name;
+			setName(Name);
 
-	cout << "Enter the Book price\n";
-	cin >> price;
-	setPrice(price);
-	cout << "Enter the Book Qty\n";
-	cin >> Qty;
-	setQty(Qty);
+			cout << "Enter the Book Author\n";
+			cin >> Author;
+			setAuthor(Author);
+
+			cout << "Enter the Book price\n";
+			cin >> price;
+			setPrice(price);
+			cout << "Enter the Book Qty\n";
+			cin >> Qty;
+			setQty(Qty);
+
+			Pack(outRecord);
+			outRecord.WriteL(TestOut);
+
+			cout << " book added successfully\nenter 1 to insert a new book or 0 to main menu ";
+			cin >> choice;
+		}
+	}
+	TestOut.close();
 }
 
-void Book::seach_Book()
+void Book::display_book()
 {
+	VariableLengthRecord inRecord;
+	ifstream TestIn("deltext.dat", ios::in | ios::binary);
+	inRecord.ReadHeader(TestIn);
+	TestIn.seekg(0, ios::beg); // Reset Cursor
+	if (TestIn.is_open())
+	{
+		while (!TestIn.eof())
+		{
+			cout << "read " << inRecord.ReadL(TestIn) << endl;
+			cout << "unpack " << Unpack(inRecord) << endl;
+			Print(cout);
+		}
+	}
+	TestIn.close();
+	// TestIn.clear();  //to able to read aga
 }
