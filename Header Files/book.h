@@ -44,4 +44,6 @@ public:
 	int Unpack(VariableLengthRecord &); // From Record to  Object Person  => Read
 
 	void Print(ostream &);
+	void Add_Book();
+	void Updata_Books();
 };

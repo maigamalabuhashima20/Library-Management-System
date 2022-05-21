@@ -131,3 +131,27 @@ void Book::Print(ostream &stream)
 		   << "\tQty '" << getQty() << "'\n"
 		   << "\tprice '" << getPrice() << "'\n";
 }
+void Book::Add_Book() {
+
+	cout << "Enter the Book Name\n";
+	cin >> Name[];
+	cout << "Enter the Book id\n";
+	cin >>Id;
+	cout << "Enter the Book Author\n";
+	cin >>Author[];
+	cout << "Enter the Book price\n";
+	cin >>Price;
+	cout << "Enter the Book Qty\n";
+	cin >> Qty;
+	cout << "Enter the Book Category()\n";
+	cin >> Category[];
+}
+void Book::Updata_Books() {
+	if (Qty<= 5)
+	{
+		Book::Add_Book()
+	}
+	else
+		cout << "Sorry you can't updata\n";
+
+}
