@@ -219,7 +219,7 @@ void Issue::search()
 	}
 
 
-void Issues ::display_Issues ()
+void Issue ::display_Issue ()
 {
  VariableLengthRecord inRecord;      //object from chass varable hength
 
