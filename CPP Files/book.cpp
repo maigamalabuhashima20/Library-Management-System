@@ -144,7 +144,7 @@ void Book::Add_Book()
 	InitRecord(outRecord); // only once
 	ofstream TestOut("books.dat", ios::out | ios::binary | ios::app);
 
-	outRecord.WriteHeader(TestOut); // once
+	// outRecord.WriteHeader(TestOut);  // once
 	if (TestOut.is_open())
 	{
 		while (choice)
@@ -191,7 +191,13 @@ void Book::display_book()
 	{
 		while (!TestIn.eof())
 		{
-			cout << "read " << inRecord.ReadL(TestIn) << endl;
+			// cout << "read " << inRecord.ReadL(TestIn) << endl;
+			if (inRecord.ReadL(TestIn) == 0)
+			{
+				TestIn.seekg(6, ios::cur);
+				// cout << "read " << inRecord.ReadL(TestIn);
+			}
+
 			cout << "unpack " << Unpack(inRecord) << endl;
 			Print(cout);
 		}
