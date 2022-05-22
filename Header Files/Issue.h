@@ -7,16 +7,16 @@ using namespace std;
 
 class Issue
 {
-public:
+private:
 	// fields
 	short	student_id;
-	char	*book_name;
-	char	*student_name;
-	char    *Return_date;
-	char    *Issue_date;
+	char	book_name[20];
+	char	student_name[20];
+	char    Return_date[20];
+	char    Issue_date[20];
 
 	
-
+public:
 	void setId(short id);
 	void setbook_name(const char* book_name);
 	void setstudent_name(const char* student_name);
@@ -33,7 +33,7 @@ public:
 
 	
 	Issue();
-	Issue(short id, char* bname, char* sname, char* Rdate, char* Idate);
+	Issue(short id, char bname[], char sname[], char Rdate[], char Idate[]);
 
 	void InitRecord(VariableLengthRecord&); //set Record  Configuration
 
@@ -42,6 +42,11 @@ public:
 	int Unpack(VariableLengthRecord&);  // From Record to  Object Person  => Read
 
 	void Print(ostream&);
-//add => mryam
-//serch=> mryam
+
+	//add
+	void Add_Book();
+
+	//serch
+	void search();
+
 };
