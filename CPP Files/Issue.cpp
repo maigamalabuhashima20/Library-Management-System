@@ -222,8 +222,8 @@ void Issue::search()
 void Issues ::display_Issues ()
 {
  VariableLengthRecord inRecord;      //object from chass varable hength
-Issues.I1;
- ifstream TestIn("isstext.dat", ios::in | ios::binary);
+
+ ifstream TestIn("deltext2.dat", ios::in | ios::binary);
  inRecord.ReadHeader(TestIn);
  TestIn.seekg(0, ios::beg);        // Reset Cursor
  if (TestIn.is_open())
@@ -234,11 +234,11 @@ Issues.I1;
    cout << "unpack " << Unpack(inRecord) << endl;
    Print();
 
-    cout << "student_ id : " << I1.Id() << endl;
-  cout << " student_name: " << I1.sname()  << endl;
-  cout << "book_ Name : " << I1. bName()<< endl;
-  cout << " Return_date: " <<I1.Rdate ()<< endl;
-  cout << " Issue_date: " <<I1.Idate ()<< endl;
+    cout << "student_ id : " << Id() << endl;
+  cout << " student_name: " << sname()  << endl;
+  cout << "book_ Name : " <<  bName()<< endl;
+  cout << " Return_date: " <<Rdate ()<< endl;
+  cout << " Issue_date: " <<Idate ()<< endl;
  
   }
  }
