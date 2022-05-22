@@ -230,7 +230,7 @@ void Issue ::display_Issue ()
  {
   while (!TestIn.eof())
   {
-   //cout << "read " << inRecord.ReadL(TestIn) << endl;
+  cout << "read " << inRecord.ReadL(TestIn) << endl;
    cout << "unpack " << Unpack(inRecord) << endl;
    Print( cout );
 
@@ -239,3 +239,4 @@ void Issue ::display_Issue ()
  TestIn.close();
  // TestIn.clear();  //to able to read aga
 }
+
