@@ -232,14 +232,14 @@ void Issues ::display_Issues ()
   {
    cout << "read " << inRecord.ReadL(TestIn) << endl;
    cout << "unpack " << Unpack(inRecord) << endl;
-  void Print();
-
+   Print( cout );
+/*
     cout << "student_ id : " << Id() << endl;
   cout << " student_name: " << sname()  << endl;
   cout << "book_ Name : " <<  bName()<< endl;
   cout << " Return_date: " <<Rdate ()<< endl;
   cout << " Issue_date: " <<Idate ()<< endl;
- 
+ */
   }
  }
  TestIn.close();
