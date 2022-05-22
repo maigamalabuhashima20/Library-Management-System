@@ -1,5 +1,6 @@
 #include <string.h>
 #include "issue.h"
+#include <fstream>
 
 
 Issue::Issue()
@@ -11,13 +12,13 @@ Issue::Issue()
 	Issue_date[0]=0;
 }
 
-Issue::Issue(short id, char* bname, char* sname, char* Rdate, char* Idate)
+Issue::Issue(short id, char bname[], char sname[], char Rdate[], char Idate[])
 {
 	student_id = id;
-	strcpy(book_name, bname);
-	strcpy(book_name, sname);
-	strcpy(book_name, Rdate);
-	strcpy(book_name, Idate);
+	strcpy_s(book_name, bname);
+	strcpy_s(student_name, sname);
+	strcpy_s(student_name, Rdate);
+	strcpy_s(Issue_date, Idate);
 }
 
 //set
@@ -28,22 +29,22 @@ void Issue::setId(short student_id)
 
 void Issue::setbook_name(const char* book_name)
 {
-	strcpy(this->book_name, book_name);
+	strcpy_s(this->book_name, book_name);
 }
 
 void Issue::setstudent_name(const char* student_name)
 {
-	strcpy(this->student_name, student_name);
+	strcpy_s(this->student_name, student_name);
 }
 
 void Issue::setReturn_date(const char* Return_date)
 {
-	strcpy(this->Return_date, Return_date);
+	strcpy_s(this->Return_date, Return_date);
 }
 
 void Issue::setIssue_date(const char* Issue_date)
 {
-	strcpy(this->Issue_date, Issue_date);
+	strcpy_s(this->Issue_date, Issue_date);
 }
 
 
@@ -127,11 +128,85 @@ void Issue::Print(ostream& stream)
 		<< "\tIssue's date '" << Issue_date << "'\n";
 }
 
-
-
 //add =>mryam
+void Issue::Add_Book() {
+	VariableLengthRecord outRecord;
+
+	short id, choice =1;
+	char book_name[20], student_name[20], Return_date[20], Issue_date[20];
+
+	InitRecord(outRecord); // only once
+
+	
+	ofstream TestOut("deltext2.dat", ios::out | ios::binary | ios::app);
+
+	outRecord.WriteHeader(TestOut);  // Only Once.
+
+	if (TestOut.is_open()) {
+		while (choice )
+		{
+			cout << "Enter the student id\n";
+			cin >> id;
+			setId(id);
+
+			cout << "Enter the book name\n";
+			cin >> book_name;
+			setbook_name(book_name);
+
+			cout << "Enter the student name\n";
+			cin >> student_name;
+			setstudent_name(student_name);
+
+			cout << "Enter the Return date\n";
+			cin >> Return_date;
+			setReturn_date(Return_date);
+
+			cout << "Enter the Issue date\n";
+			cin >> Issue_date;
+			setIssue_date(Issue_date);
+
+			Pack(outRecord);
+			outRecord.WriteL(TestOut);
+
+			cout << " added done successfully\nenter 1 to insert a new book or 0 to main menu ";
+			cin >> choice;
+		}
+	}
+	TestOut.close();
+}
 
 //serch=>mryam
+void Issue::search() {
+
+	short id, choice = 1;
+	
+	short id_value;
+
+	ifstream TestOut("deltext2.dat", ios::in | ios::binary | ios::app);
+
+	cout << "Enter id to search.." << endl;
+	cin >> id_value;
+	int x = 0;
+	while (!TestOut.eof()) {
+	
+		if (student_id == id_value) {
+			cout << student_id << endl;
+			cout << book_name << endl;
+			
+			x = 1;
+			break;
+		}
+	}
+	if (x == 0)
+	{
+		cout << "cant find .." << endl;
+
+	}
+}
+
+
+
+
 
 
 void Issues ::display_Issues ()
