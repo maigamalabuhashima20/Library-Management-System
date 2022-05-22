@@ -48,5 +48,7 @@ public:
 
 	//serch
 	void search();
+	//display
+	void display ();
 
 };
