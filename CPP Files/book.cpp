@@ -242,37 +242,5 @@ void Book::search_books()
 		}
 	}
 	TestIn.close();
-	void Updata_Books(fstream& io, short offset) {
-	io.seekg(0, ios::beg); // Reset Cursor
-	struct  Record {
-
-		char category[20];
-		short Qty;
-		float price;
-
-	};
-	Record record;
 	
-	io.seekg(offset * sizeof(record), ios::beg);
-	io.read((char*)&record, sizeof(record));
-
-	cout << "the data at record " << offset << endl;
-
-	cout << " Book category : " << record.category[20]<<Book::getCategory(record.category) << endl;
-	cout << "Book Price : " << record.price<<Book::getPrice(record.price)<< endl;
-	cout << "Book QTY : " << record.Qty << Book::getQty(record.Qty)<<endl;
-
-
-	cout << "Enter the update data" << endl;;
-	cout << "Enter the Book category :";  cin >> record.category[20];Book::setCategory(record.category[20]);
-	cout << "Enter the Book price:";  cin >> record.price;Book::setPrice(record.price);
-	cout << "Enter  the product Qty:";   cin >> record.Qty;Book::setQty(record.Qty);
-
-	cin.ignore();
-
-	io.seekp(offset * sizeof(record), ios::beg);
-	io.write((char*)&record, sizeof(record));
-
-}
-
 }
