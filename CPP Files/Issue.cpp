@@ -230,16 +230,10 @@ void Issue ::display_Issue ()
  {
   while (!TestIn.eof())
   {
-   cout << "read " << inRecord.ReadL(TestIn) << endl;
+   //cout << "read " << inRecord.ReadL(TestIn) << endl;
    cout << "unpack " << Unpack(inRecord) << endl;
    Print( cout );
-/*
-    cout << "student_ id : " << Id() << endl;
-  cout << " student_name: " << sname()  << endl;
-  cout << "book_ Name : " <<  bName()<< endl;
-  cout << " Return_date: " <<Rdate ()<< endl;
-  cout << " Issue_date: " <<Idate ()<< endl;
- */
+
   }
  }
  TestIn.close();
