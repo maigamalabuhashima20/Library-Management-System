@@ -240,3 +240,20 @@ void Issue ::display_Issue ()
  // TestIn.clear();  //to able to read aga
 }
 
+void issue::Delete(fstream& f, short rrn)
+{
+	short header;
+	int recordSize =  20+strlen(book_name) +strlen(student_name);
+	f.seekg(0, ios::beg);
+	f.read((char*)&header, sizeof(header));
+
+	f.seekp(2 + (rrn - 1) * recordSize, ios::beg);
+	f.put('*');
+	f.write((char*)&header, sizeof(header));
+
+	f.seekp(0, ios::beg);
+	f.write((char*)&rrn, sizeof(rrn));
+	f.close();
+}
+
+
