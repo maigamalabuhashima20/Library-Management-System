@@ -49,6 +49,6 @@ public:
 	//serch
 	void search();
 	//display
-	void display ();
+	void display_issue();
 
 };
