@@ -176,37 +176,47 @@ void Issue::Add_Book() {
 }
 
 //serch=>mryam
-void Issue::search() {
+void Issue::search() 
 
-	short id, choice = 1;
-	
-	short id_value;
+	{
+		short id, choice = 1, flag = 0;
 
-	ifstream TestOut("deltext2.dat", ios::in | ios::binary | ios::app);
+		VariableLengthRecord inRecord;
+		ifstream TestIn("deltext2.dat", ios::in | ios::binary);
 
-	cout << "Enter id to search.." << endl;
-	cin >> id_value;
-	int x = 0;
-	while (!TestOut.eof()) {
-	
-		if (student_id == id_value) {
-			cout << student_id << endl;
-			cout << book_name << endl;
-			
-			x = 1;
-			break;
+		inRecord.ReadHeader(TestIn);
+		if (TestIn.is_open())
+		{
+			while (choice)
+			{
+				cout << "Enter id search for : ";
+				cin >> id;
+
+				while (!TestIn.eof())
+				{
+					inRecord.ReadL(TestIn);
+					Unpack(inRecord);
+
+					if (getId() == id)
+					{
+						Print(cout);
+						flag = 1;
+						break;
+					}
+					else
+					{
+						flag = 0;
+						continue;
+					}
+				}
+				if (flag == 0)
+					cout << "Not Found\n";
+				cout << "want to search again ? enter 1 to search  or 0 to main menu ";
+				cin >> choice;
+			}
+
 		}
 	}
-	if (x == 0)
-	{
-		cout << "cant find .." << endl;
-
-	}
-}
-
-
-
-
 
 
 void Issues ::display_Issues ()
