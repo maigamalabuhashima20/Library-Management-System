@@ -1,5 +1,6 @@
 #include <string.h>
 #include "issue.h"
+#include <fstream>
 
 
 Issue::Issue()
@@ -11,13 +12,13 @@ Issue::Issue()
 	Issue_date[0]=0;
 }
 
-Issue::Issue(short id, char* bname, char* sname, char* Rdate, char* Idate)
+Issue::Issue(short id, char bname[], char sname[], char Rdate[], char Idate[])
 {
 	student_id = id;
-	strcpy(book_name, bname);
-	strcpy(book_name, sname);
-	strcpy(book_name, Rdate);
-	strcpy(book_name, Idate);
+	strcpy_s(book_name, bname);
+	strcpy_s(student_name, sname);
+	strcpy_s(student_name, Rdate);
+	strcpy_s(Issue_date, Idate);
 }
 
 //set
@@ -28,22 +29,22 @@ void Issue::setId(short student_id)
 
 void Issue::setbook_name(const char* book_name)
 {
-	strcpy(this->book_name, book_name);
+	strcpy_s(this->book_name, book_name);
 }
 
 void Issue::setstudent_name(const char* student_name)
 {
-	strcpy(this->student_name, student_name);
+	strcpy_s(this->student_name, student_name);
 }
 
 void Issue::setReturn_date(const char* Return_date)
 {
-	strcpy(this->Return_date, Return_date);
+	strcpy_s(this->Return_date, Return_date);
 }
 
 void Issue::setIssue_date(const char* Issue_date)
 {
-	strcpy(this->Issue_date, Issue_date);
+	strcpy_s(this->Issue_date, Issue_date);
 }
 
 
@@ -127,18 +128,102 @@ void Issue::Print(ostream& stream)
 		<< "\tIssue's date '" << Issue_date << "'\n";
 }
 
-
-
 //add =>mryam
+void Issue::Add_Book() {
+	VariableLengthRecord outRecord;
+
+	short id, choice =1;
+	char book_name[20], student_name[20], Return_date[20], Issue_date[20];
+
+	InitRecord(outRecord); // only once
+
+	
+	ofstream TestOut("deltext2.dat", ios::out | ios::binary | ios::app);
+
+	outRecord.WriteHeader(TestOut);  // Only Once.
+
+	if (TestOut.is_open()) {
+		while (choice )
+		{
+			cout << "Enter the student id\n";
+			cin >> id;
+			setId(id);
+
+			cout << "Enter the book name\n";
+			cin >> book_name;
+			setbook_name(book_name);
+
+			cout << "Enter the student name\n";
+			cin >> student_name;
+			setstudent_name(student_name);
+
+			cout << "Enter the Return date\n";
+			cin >> Return_date;
+			setReturn_date(Return_date);
+
+			cout << "Enter the Issue date\n";
+			cin >> Issue_date;
+			setIssue_date(Issue_date);
+
+			Pack(outRecord);
+			outRecord.WriteL(TestOut);
+
+			cout << " added done successfully\nenter 1 to insert a new book or 0 to main menu ";
+			cin >> choice;
+		}
+	}
+	TestOut.close();
+}
 
 //serch=>mryam
+void Issue::search() 
+
+	{
+		short id, choice = 1, flag = 0;
+
+		VariableLengthRecord inRecord;
+		ifstream TestIn("deltext2.dat", ios::in | ios::binary);
+
+		inRecord.ReadHeader(TestIn);
+		if (TestIn.is_open())
+		{
+			while (choice)
+			{
+				cout << "Enter id search for : ";
+				cin >> id;
+
+				while (!TestIn.eof())
+				{
+					inRecord.ReadL(TestIn);
+					Unpack(inRecord);
+
+					if (getId() == id)
+					{
+						Print(cout);
+						flag = 1;
+						break;
+					}
+					else
+					{
+						flag = 0;
+						continue;
+					}
+				}
+				if (flag == 0)
+					cout << "Not Found\n";
+				cout << "want to search again ? enter 1 to search  or 0 to main menu ";
+				cin >> choice;
+			}
+
+		}
+	}
 
 
-void Issues ::display_Issues ()
+void Issue ::display_Issue ()
 {
  VariableLengthRecord inRecord;      //object from chass varable hength
-Issues.I1;
- ifstream TestIn("isstext.dat", ios::in | ios::binary);
+
+ ifstream TestIn("deltext2.dat", ios::in | ios::binary);
  inRecord.ReadHeader(TestIn);
  TestIn.seekg(0, ios::beg);        // Reset Cursor
  if (TestIn.is_open())
@@ -147,14 +232,14 @@ Issues.I1;
   {
    cout << "read " << inRecord.ReadL(TestIn) << endl;
    cout << "unpack " << Unpack(inRecord) << endl;
-   Print();
-
-    cout << "student_ id : " << I1.Id() << endl;
-  cout << " student_name: " << I1.sname()  << endl;
-  cout << "book_ Name : " << I1. bName()<< endl;
-  cout << " Return_date: " <<I1.Rdate ()<< endl;
-  cout << " Issue_date: " <<I1.Idate ()<< endl;
- 
+   Print( cout );
+/*
+    cout << "student_ id : " << Id() << endl;
+  cout << " student_name: " << sname()  << endl;
+  cout << "book_ Name : " <<  bName()<< endl;
+  cout << " Return_date: " <<Rdate ()<< endl;
+  cout << " Issue_date: " <<Idate ()<< endl;
+ */
   }
  }
  TestIn.close();
