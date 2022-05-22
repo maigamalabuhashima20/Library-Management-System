@@ -232,7 +232,7 @@ void Issues ::display_Issues ()
   {
    cout << "read " << inRecord.ReadL(TestIn) << endl;
    cout << "unpack " << Unpack(inRecord) << endl;
-   Print();
+  void Print();
 
     cout << "student_ id : " << Id() << endl;
   cout << " student_name: " << sname()  << endl;
